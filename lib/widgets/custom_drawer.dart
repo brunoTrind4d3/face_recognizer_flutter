@@ -63,6 +63,8 @@ class CustomDrawer extends StatelessWidget {
               Divider(),
               DrawerTile(Icons.person, "Tela embarque", pageController,0),
               DrawerTile(Icons.list, "Lista Passageiros", pageController, 1),
+              Container(height: 280.0),
+              DrawerTile(Icons.close, "Cancelar embarque", pageController, 3),
             ],
           ),
         ],
