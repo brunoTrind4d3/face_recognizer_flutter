@@ -2,8 +2,13 @@ import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
+import 'package:reconhecedor_facial_flutter/tela/function_screen.dart';
 
 class HomeTab extends StatelessWidget {
+  final PageController pageController;
+
+  HomeTab(this.pageController);
+
   @override
   Widget build(BuildContext context) {
     Widget _buildBodyBack() => Container(
@@ -98,7 +103,13 @@ class HomeTab extends StatelessWidget {
                     style: TextStyle(fontSize: 20.0),
                   ),
                   textColor: Colors.white,
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => FunctionScreen(pageController),
+                        ));
+                  },
                   color: Colors.black,
                   shape: new RoundedRectangleBorder(
                       borderRadius: new BorderRadius.circular(50.0)),
