@@ -5,10 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:reconhecedor_facial_flutter/tela/function_screen.dart';
 
 class HomeTab extends StatelessWidget {
-
-
   HomeTab(this.pageController);
-
 
   final PageController pageController;
   final TextEditingController controllerInput = new TextEditingController();
@@ -20,8 +17,6 @@ class HomeTab extends StatelessWidget {
   void _resetCampos() {
     controllerInput.text = "";
     controllerInputData.text = "";
-    _globalKeyTest = GlobalKey<FormState>();
-    _globalKey = GlobalKey<FormState>();
   }
 
   @override
@@ -141,19 +136,23 @@ class HomeTab extends StatelessWidget {
                           _globalKeyTest.currentState.validate()) {
                         retornaDocs(controllerInput, controllerInputData)
                             .then((map) {
-                              print(map.data);
-                              if(map == null){
-                                _resetCampos();
-                                return;
-                              }
+                          if (map.data != null) {
+                            String str = controllerInput.text.trim() +
+                                controllerInputData.text
+                                    .trim()
+                                    .replaceAll('/', '');
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => FunctionScreen(
+                                      pageController, str),
+                                ));
+                            _resetCampos();
+                          } else {
+                            _resetCampos();
+                            return;
+                          }
                         });
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  FunctionScreen(pageController),
-                            ));
-                        _resetCampos();
                       }
                     },
                     color: Colors.black,
@@ -174,21 +173,9 @@ Future<DocumentSnapshot> retornaDocs(
     TextEditingController controller, TextEditingController controller2) async {
   DocumentSnapshot snapshot = await Firestore.instance
       .collection('viagens')
-      .document(controller.text.trim()+controller2.text.trim().replaceAll('/', ''))
+      .document(
+          controller.text.trim() + controller2.text.trim().replaceAll('/', ''))
       .get();
   controller.value;
   return snapshot;
-}
-
-Widget erroAoConsultar(){
-
-  return(Container(
-    height: 20.0,
-    child: (Text('Viagem não encontrada',
-      style: TextStyle(
-        fontSize: 20.0,
-        fontWeight: FontWeight.bold,
-        color: Colors.black
-      ),)),
-  ));
 }
