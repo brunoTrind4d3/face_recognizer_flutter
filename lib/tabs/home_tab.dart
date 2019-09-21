@@ -29,6 +29,32 @@ class HomeTab extends StatelessWidget {
             ], begin: Alignment.topLeft, end: Alignment.bottomRight),
           ),
         );
+
+    _requestPop() {
+      showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: Text('Viagem não encontrada'),
+              content: Text(
+                'Nenhuma viagem encontrada com os parâmetros selecionados',
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  fontSize: 15.0
+                ),
+              ),
+              actions: <Widget>[
+                FlatButton(
+                  child: Text('OK'),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+              ],
+            );
+          });
+    }
+
     return Stack(
       children: <Widget>[
         _buildBodyBack(),
@@ -144,11 +170,12 @@ class HomeTab extends StatelessWidget {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => FunctionScreen(
-                                      pageController, str),
+                                  builder: (context) =>
+                                      FunctionScreen(pageController, str),
                                 ));
                             _resetCampos();
                           } else {
+                            _requestPop();
                             _resetCampos();
                             return;
                           }

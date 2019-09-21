@@ -12,8 +12,8 @@ class CustomDrawer extends StatelessWidget {
     Widget _buildDrawerBack() => Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(colors: [
-          Color.fromARGB(255, 203, 236, 241),
-          Color.fromARGB(255, 255, 255, 255)
+          Color.fromARGB(255, 255, 255, 255),
+          Color.fromARGB(255, 255,255,255)
         ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
       ),
     );
@@ -52,7 +52,8 @@ class CustomDrawer extends StatelessWidget {
                             style: TextStyle(
                                 fontSize: 18.0,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.black),
+                                color: Colors.black,
+                            ),
                           ),
                         ],
                       ),
@@ -63,7 +64,7 @@ class CustomDrawer extends StatelessWidget {
               Divider(),
               DrawerTile(Icons.person, "Tela embarque", pageController,0),
               DrawerTile(Icons.list, "Lista Passageiros", pageController, 1),
-              Container(height: 255.0),
+              Container(height: 272.0),
               Divider(),
               DrawerTile(Icons.close, "Cancelar embarque", pageController, 3),
             ],

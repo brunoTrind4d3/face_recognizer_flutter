@@ -21,6 +21,7 @@ class FunctionScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return PageView(
       physics: NeverScrollableScrollPhysics(),
+      scrollDirection: Axis.vertical,
       controller: pageController,
       children: <Widget>[
         Scaffold(
@@ -49,6 +50,11 @@ class FunctionScreen extends StatelessWidget {
           ),
         ),
         Scaffold(
+          appBar: AppBar(
+            title: Text('Passageiros'),
+            centerTitle: true,
+            backgroundColor: Color.fromARGB(255, 237, 213, 57),
+          ),
             drawer: CustomDrawer(pageController),
             body: PassageirosTab(pageController, string),
         )

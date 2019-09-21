@@ -8,6 +8,7 @@ class PassageirosTab extends StatelessWidget {
 
   PassageirosTab(this.pageController, this.string);
 
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<QuerySnapshot>(
