@@ -1,5 +1,9 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:reconhecedor_facial_flutter/tabs/passageiros_tab.dart';
+import 'package:reconhecedor_facial_flutter/tela/camera_preview.dart';
+
 import 'package:reconhecedor_facial_flutter/widgets/custom_drawer.dart';
 
 class FunctionScreen extends StatelessWidget {
@@ -46,6 +50,7 @@ class FunctionScreen extends StatelessWidget {
                   ),
                 ],
               ),
+              CamPreview()
             ],
           ),
         ),
@@ -55,8 +60,8 @@ class FunctionScreen extends StatelessWidget {
             centerTitle: true,
             backgroundColor: Color.fromARGB(255, 237, 213, 57),
           ),
-            drawer: CustomDrawer(pageController),
-            body: PassageirosTab(pageController, string),
+          drawer: CustomDrawer(pageController),
+          body: PassageirosTab(pageController, string),
         )
       ],
     );
