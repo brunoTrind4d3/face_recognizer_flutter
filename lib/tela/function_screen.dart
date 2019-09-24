@@ -9,10 +9,11 @@ import 'package:reconhecedor_facial_flutter/widgets/custom_drawer.dart';
 class FunctionScreen extends StatelessWidget {
   final PageController pageController;
   final String string;
+  final CameraDescription cameraDescription;
+  FunctionScreen(this.pageController, this.string, this.cameraDescription);
 
-  FunctionScreen(this.pageController, this.string);
-
-  Widget _buildBodyBack() => Container(
+  Widget _buildBodyBack() =>
+      Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(colors: [
             Color.fromARGB(255, 237, 213, 57),
@@ -50,7 +51,7 @@ class FunctionScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              CamPreview()
+              CamPreview(camera: cameraDescription,)
             ],
           ),
         ),

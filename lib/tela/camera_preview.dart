@@ -4,6 +4,13 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 
 class CamPreview extends StatefulWidget {
+  final CameraDescription camera;
+
+  const CamPreview({
+    Key key,
+    @required this.camera,
+  }) : super(key: key);
+
   @override
   _CamPreviewState createState() => _CamPreviewState();
 }
@@ -18,13 +25,10 @@ class _CamPreviewState extends State<CamPreview> {
     _initApp();
   }
 
-  _initApp() async {
-    final cameras = await availableCameras();
-    final firstCam = cameras.last;
-
+  _initApp() {
     _controller = CameraController(
-      firstCam,
-      ResolutionPreset.medium,
+      widget.camera,
+      ResolutionPreset.ultraHigh,
     );
 
     _initCamFuture = _controller.initialize();
@@ -39,15 +43,15 @@ class _CamPreviewState extends State<CamPreview> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.fromLTRB(25, 100, 15,0.0),
+      padding: EdgeInsets.fromLTRB(25, 100, 15, 0.0),
       child: Container(
         width: 325,
-        height: 400,
+        height: 450,
         child: FutureBuilder<void>(
           future: _initCamFuture,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.done) {
-            return CameraPreview(_controller);
+              return CameraPreview(_controller);
             } else {
               return Center(
                 child: CircularProgressIndicator(),

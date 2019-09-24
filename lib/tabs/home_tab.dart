@@ -1,3 +1,4 @@
+import 'package:camera/camera.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
@@ -5,7 +6,9 @@ import 'package:intl/intl.dart';
 import 'package:reconhecedor_facial_flutter/tela/function_screen.dart';
 
 class HomeTab extends StatelessWidget {
-  HomeTab(this.pageController);
+
+  final CameraDescription cameraDescription;
+  HomeTab(this.pageController, this.cameraDescription);
 
   final PageController pageController;
   final TextEditingController controllerInput = new TextEditingController();
@@ -171,7 +174,7 @@ class HomeTab extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) =>
-                                      FunctionScreen(pageController, str),
+                                      FunctionScreen(pageController, str, cameraDescription),
                                 ));
                             _resetCampos();
                           } else {
